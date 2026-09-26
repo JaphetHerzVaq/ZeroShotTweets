@@ -1,0 +1,71 @@
+﻿serie,indicador_x,indicador_y,n,total_cruce,pct
+"C4 · méxico, viaje, ciudad, hora",Atmósfera,Atmósfera,23,57,0.40350877192982454
+"C4 · méxico, viaje, ciudad, hora",Atmósfera,Perspectiva política,2,18,0.1111111111111111
+"C4 · méxico, viaje, ciudad, hora",Atmósfera,Imagen cultural,22,40,0.55
+"C4 · méxico, viaje, ciudad, hora",Atmósfera,Saliencia de violencia,1,20,0.05
+"C4 · méxico, viaje, ciudad, hora",Perspectiva política,Perspectiva política,2,21,0.09523809523809523
+"C4 · méxico, viaje, ciudad, hora",Perspectiva política,Imagen cultural,1,6,0.16666666666666666
+"C4 · méxico, viaje, ciudad, hora",Perspectiva política,Saliencia de violencia,0,14,0.0
+"C4 · méxico, viaje, ciudad, hora",Imagen cultural,Imagen cultural,22,42,0.5238095238095238
+"C4 · méxico, viaje, ciudad, hora",Imagen cultural,Saliencia de violencia,1,6,0.16666666666666666
+"C4 · méxico, viaje, ciudad, hora",Saliencia de violencia,Saliencia de violencia,1,21,0.047619047619047616
+"C10 · méxico, mexicano, gente, japón",Atmósfera,Atmósfera,16,57,0.2807017543859649
+"C10 · méxico, mexicano, gente, japón",Atmósfera,Perspectiva política,10,18,0.5555555555555556
+"C10 · méxico, mexicano, gente, japón",Atmósfera,Imagen cultural,6,40,0.15
+"C10 · méxico, mexicano, gente, japón",Atmósfera,Saliencia de violencia,14,20,0.7
+"C10 · méxico, mexicano, gente, japón",Perspectiva política,Perspectiva política,11,21,0.5238095238095238
+"C10 · méxico, mexicano, gente, japón",Perspectiva política,Imagen cultural,2,6,0.3333333333333333
+"C10 · méxico, mexicano, gente, japón",Perspectiva política,Saliencia de violencia,11,14,0.7857142857142857
+"C10 · méxico, mexicano, gente, japón",Imagen cultural,Imagen cultural,6,42,0.14285714285714285
+"C10 · méxico, mexicano, gente, japón",Imagen cultural,Saliencia de violencia,4,6,0.6666666666666666
+"C10 · méxico, mexicano, gente, japón",Saliencia de violencia,Saliencia de violencia,15,21,0.7142857142857143
+"C8 · vegetarian, ensalada, queso, recipes",Atmósfera,Atmósfera,2,57,0.03508771929824561
+"C8 · vegetarian, ensalada, queso, recipes",Atmósfera,Perspectiva política,0,18,0.0
+"C8 · vegetarian, ensalada, queso, recipes",Atmósfera,Imagen cultural,2,40,0.05
+"C8 · vegetarian, ensalada, queso, recipes",Atmósfera,Saliencia de violencia,0,20,0.0
+"C8 · vegetarian, ensalada, queso, recipes",Perspectiva política,Perspectiva política,0,21,0.0
+"C8 · vegetarian, ensalada, queso, recipes",Perspectiva política,Imagen cultural,0,6,0.0
+"C8 · vegetarian, ensalada, queso, recipes",Perspectiva política,Saliencia de violencia,0,14,0.0
+"C8 · vegetarian, ensalada, queso, recipes",Imagen cultural,Imagen cultural,2,42,0.047619047619047616
+"C8 · vegetarian, ensalada, queso, recipes",Imagen cultural,Saliencia de violencia,0,6,0.0
+"C8 · vegetarian, ensalada, queso, recipes",Saliencia de violencia,Saliencia de violencia,0,21,0.0
+"C11 · estadio, york, autobús, impresionante",Atmósfera,Atmósfera,2,57,0.03508771929824561
+"C11 · estadio, york, autobús, impresionante",Atmósfera,Perspectiva política,1,18,0.05555555555555555
+"C11 · estadio, york, autobús, impresionante",Atmósfera,Imagen cultural,1,40,0.025
+"C11 · estadio, york, autobús, impresionante",Atmósfera,Saliencia de violencia,0,20,0.0
+"C11 · estadio, york, autobús, impresionante",Perspectiva política,Perspectiva política,2,21,0.09523809523809523
+"C11 · estadio, york, autobús, impresionante",Perspectiva política,Imagen cultural,1,6,0.16666666666666666
+"C11 · estadio, york, autobús, impresionante",Perspectiva política,Saliencia de violencia,0,14,0.0
+"C11 · estadio, york, autobús, impresionante",Imagen cultural,Imagen cultural,2,42,0.047619047619047616
+"C11 · estadio, york, autobús, impresionante",Imagen cultural,Saliencia de violencia,0,6,0.0
+"C11 · estadio, york, autobús, impresionante",Saliencia de violencia,Saliencia de violencia,0,21,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Atmósfera,Atmósfera,0,57,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Atmósfera,Perspectiva política,0,18,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Atmósfera,Imagen cultural,0,40,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Atmósfera,Saliencia de violencia,0,20,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Perspectiva política,Perspectiva política,0,21,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Perspectiva política,Imagen cultural,0,6,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Perspectiva política,Saliencia de violencia,0,14,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Imagen cultural,Imagen cultural,0,42,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Imagen cultural,Saliencia de violencia,0,6,0.0
+"C21 · imbécil, llama, pedófilo, zorra",Saliencia de violencia,Saliencia de violencia,0,21,0.0
+otros temas (26 clusters con menos de 3 menciones),Atmósfera,Atmósfera,1,57,0.017543859649122806
+otros temas (26 clusters con menos de 3 menciones),Atmósfera,Perspectiva política,0,18,0.0
+otros temas (26 clusters con menos de 3 menciones),Atmósfera,Imagen cultural,1,40,0.025
+otros temas (26 clusters con menos de 3 menciones),Atmósfera,Saliencia de violencia,0,20,0.0
+otros temas (26 clusters con menos de 3 menciones),Perspectiva política,Perspectiva política,0,21,0.0
+otros temas (26 clusters con menos de 3 menciones),Perspectiva política,Imagen cultural,0,6,0.0
+otros temas (26 clusters con menos de 3 menciones),Perspectiva política,Saliencia de violencia,0,14,0.0
+otros temas (26 clusters con menos de 3 menciones),Imagen cultural,Imagen cultural,1,42,0.023809523809523808
+otros temas (26 clusters con menos de 3 menciones),Imagen cultural,Saliencia de violencia,0,6,0.0
+otros temas (26 clusters con menos de 3 menciones),Saliencia de violencia,Saliencia de violencia,0,21,0.0
+ruido (sin cluster),Atmósfera,Atmósfera,13,57,0.22807017543859648
+ruido (sin cluster),Atmósfera,Perspectiva política,5,18,0.2777777777777778
+ruido (sin cluster),Atmósfera,Imagen cultural,8,40,0.2
+ruido (sin cluster),Atmósfera,Saliencia de violencia,5,20,0.25
+ruido (sin cluster),Perspectiva política,Perspectiva política,6,21,0.2857142857142857
+ruido (sin cluster),Perspectiva política,Imagen cultural,2,6,0.3333333333333333
+ruido (sin cluster),Perspectiva política,Saliencia de violencia,3,14,0.21428571428571427
+ruido (sin cluster),Imagen cultural,Imagen cultural,9,42,0.21428571428571427
+ruido (sin cluster),Imagen cultural,Saliencia de violencia,1,6,0.16666666666666666
+ruido (sin cluster),Saliencia de violencia,Saliencia de violencia,5,21,0.23809523809523808

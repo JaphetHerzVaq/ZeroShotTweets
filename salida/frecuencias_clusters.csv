@@ -1,0 +1,34 @@
+﻿cluster,tema,en_la_figura,color,n,pct_corpus,calificados,pct_calificados_del_cluster,pct_de_los_calificados,menciona_mexico,pct_menciona_mexico,idiomas,consulta_principal
+0,"C0 · cristiano, iglesia, dios, judío",color propio,#2a78d6,180,0.06841505131128849,0,0.0,0.0,0,0.0,en 179 · es 1,Query_Turistas1
+1,"C1 · especial, correcto, palabra, entrepierna",color propio,#eb6834,147,0.055872291904218926,1,0.006802721088435374,0.006944444444444444,0,0.0,en 103 · ja 37 · und 4,Turistas victimizacion batch 4
+2,"C2 · jugador, portero, fichaje, ince",color propio,#1baf7a,135,0.05131128848346636,1,0.007407407407407408,0.006944444444444444,0,0.0,en 130 · ja 5,Turistas victimizacion batch 4
+3,"C3 · yonna, streamer, chica, stream",color propio,#eda100,113,0.04294944887875333,2,0.017699115044247787,0.013888888888888888,1,0.008849557522123894,en 107 · ja 4 · fr 2,Query_Turistas2
+4,"C4 · méxico, viaje, ciudad, hora",color propio,#e87ba4,99,0.037628278221208664,41,0.41414141414141414,0.2847222222222222,63,0.6363636363636364,en 78 · ja 16 · es 3,ocasion_tipo_viaje
+5,"C5 · partido, copa, fútbol, mundo",color propio,#4a3aa7,95,0.03610794374762448,2,0.021052631578947368,0.013888888888888888,6,0.06315789473684211,en 80 · ja 15,Turistas victimizacion batch 4
+6,"C6 · proyecto, desarrollador, vivienda, negocio",color propio,#0d9488,93,0.03534777651083238,0,0.0,0.0,0,0.0,en 93,Query_Turistas2
+7,"C7 · lindo, genial, increíble, favor",color propio,#b45309,75,0.028506271379703536,1,0.013333333333333334,0.006944444444444444,0,0.0,en 45 · ja 26 · it 1,Query_Turistas1
+8,"C8 · vegetarian, ensalada, queso, recipes",color propio,#7c3aed,60,0.02280501710376283,12,0.2,0.08333333333333333,6,0.1,en 56 · ja 2 · es 1,Turistas victimizacion batch 3
+9,"C9 · rotundo, mitch, traemos, verdaderamente",color propio,#be123c,49,0.01862409730140631,1,0.02040816326530612,0.006944444444444444,0,0.0,en 34 · ja 13 · es 1,Query_Turistas1
+10,"C10 · méxico, mexicano, gente, japón",color propio,#0369a1,47,0.017863930064614217,23,0.48936170212765956,0.1597222222222222,26,0.5531914893617021,en 36 · ja 11,Query_Turistas1
+11,"C11 · estadio, york, autobús, impresionante",color propio,#65a30d,46,0.017483846446218167,6,0.13043478260869565,0.041666666666666664,6,0.13043478260869565,en 25 · ja 21,Turistas victimizacion batch 4
+12,"C12 · marido, carne, batidos, leche",color propio,#c2410c,45,0.01710376282782212,0,0.0,0.0,0,0.0,en 30 · ja 15,Query_Turistas1
+13,"C13 · tecnología, acción, ambicioso, fundador",color propio,#9333ea,39,0.014823261117445839,0,0.0,0.0,0,0.0,en 25 · ja 14,Query_Turistas1
+14,"C14 · sitio, hecho, usuario, envío",color propio,#0f766e,37,0.014063093880653743,0,0.0,0.0,0,0.0,en 37,Query_Turistas1
+15,"C15 · colega, cumpleaños, médico, besadme",otros clusters,#dcdad2,35,0.01330292664386165,1,0.02857142857142857,0.006944444444444444,0,0.0,en 24 · ja 4 · es 2,Turistas victimizacion batch 4
+16,"C16 · tarea, aplicación, app, foto",otros clusters,#dcdad2,35,0.01330292664386165,0,0.0,0.0,0,0.0,en 34 · ja 1,Query_Turistas1
+17,"C17 · entrada, vuelo, club, inglaterra",otros clusters,#dcdad2,33,0.012542759407069556,0,0.0,0.0,2,0.06060606060606061,en 32 · ja 1,Turistas victimizacion batch 4
+18,"C18 · fujisawa, kai, hit, kamakura",otros clusters,#dcdad2,30,0.011402508551881414,2,0.06666666666666667,0.013888888888888888,2,0.06666666666666667,ja 21 · en 9,Turistas victimizacion batch 3
+19,"C19 · extraño, correo, electrónico, terapia",otros clusters,#dcdad2,27,0.010262257696693273,0,0.0,0.0,0,0.0,en 26 · ja 1,Query_Turistas2
+20,"C20 · hora, presidente, kompany, wednesday",otros clusters,#dcdad2,26,0.009882174078297225,0,0.0,0.0,0,0.0,en 19 · ja 7,Turistas victimizacion batch 4
+21,"C21 · imbécil, llama, pedófilo, zorra",otros clusters,#dcdad2,24,0.009122006841505131,3,0.125,0.020833333333333332,0,0.0,en 24,Turistas victimizacion batch 3
+22,"C22 · voz, película, lotta, mandalorian",otros clusters,#dcdad2,23,0.008741923223109084,0,0.0,0.0,0,0.0,en 12 · ja 11,Query_Turistas1
+23,"C23 · equipaje, tampón, bolsa, bolsillo",otros clusters,#dcdad2,23,0.008741923223109084,1,0.043478260869565216,0.006944444444444444,2,0.08695652173913043,ja 12 · en 11,Turistas victimizacion batch 4
+24,"C24 · mujer, gay, militar, feminista",otros clusters,#dcdad2,22,0.008361839604713038,0,0.0,0.0,0,0.0,en 22,Query_Turistas1
+25,"C25 · paso, milla, corro, seguido",otros clusters,#dcdad2,21,0.00798175598631699,1,0.047619047619047616,0.006944444444444444,1,0.047619047619047616,en 17 · ja 4,Query_Turistas2
+26,"C26 · gracia, mentalmente, inolvidable, artista",otros clusters,#dcdad2,20,0.007601672367920942,0,0.0,0.0,0,0.0,en 19 · ja 1,Query_Turistas1
+27,"C27 · publicación, hermano, post, hermoso",otros clusters,#dcdad2,19,0.007221588749524895,0,0.0,0.0,0,0.0,en 19,Query_Turistas2
+28,"C28 · entrega, sim, mes, pago",otros clusters,#dcdad2,17,0.006461421512732801,1,0.058823529411764705,0.006944444444444444,0,0.0,en 14 · ja 3,Query_Turistas1
+29,"C29 · efecto, phat, indeed, yes",otros clusters,#dcdad2,16,0.006081337894336754,0,0.0,0.0,0,0.0,en 13 · und 3,Query_Turistas1
+30,"C30 · lluvia, tormenta, sol, repentino",otros clusters,#dcdad2,15,0.005701254275940707,1,0.06666666666666667,0.006944444444444444,4,0.26666666666666666,ja 9 · en 6,Turistas victimizacion batch 3
+-1,ruido,ruido,#c3c2b7,897,0.3409350057012543,44,0.04905239687848383,0.3055555555555556,56,0.06243032329988852,en 700 · ja 175 · und 7,Query_Turistas2
+-2,sin texto útil,sin texto útil,#ebe9e2,88,0.03344735841885215,0,0.0,0.0,0,0.0,qme 63 · zxx 8 · und 7,Query_Turistas2

@@ -1,0 +1,62 @@
+﻿cluster,tema,indicador,indicador_etiqueta,nivel,n
+-1,ruido,atmosfera,Atmósfera,1,4
+-1,ruido,atmosfera,Atmósfera,2,10
+-1,ruido,atmosfera,Atmósfera,3,2
+-1,ruido,atmosfera,Atmósfera,4,8
+-1,ruido,atmosfera,Atmósfera,5,7
+-1,ruido,imagen_cultural,Imagen cultural,1,1
+-1,ruido,imagen_cultural,Imagen cultural,2,2
+-1,ruido,imagen_cultural,Imagen cultural,3,7
+-1,ruido,imagen_cultural,Imagen cultural,4,7
+-1,ruido,imagen_cultural,Imagen cultural,5,2
+-1,ruido,perspectiva_politica,Perspectiva política,2,5
+-1,ruido,perspectiva_politica,Perspectiva política,4,2
+-1,ruido,violencia,Saliencia de violencia,1,6
+1,"C1 · especial, correcto, palabra, entrepierna",perspectiva_politica,Perspectiva política,2,1
+2,"C2 · jugador, portero, fichaje, ince",violencia,Saliencia de violencia,1,1
+3,"C3 · yonna, streamer, chica, stream",imagen_cultural,Imagen cultural,4,1
+3,"C3 · yonna, streamer, chica, stream",violencia,Saliencia de violencia,1,1
+4,"C4 · méxico, viaje, ciudad, hora",atmosfera,Atmósfera,2,3
+4,"C4 · méxico, viaje, ciudad, hora",atmosfera,Atmósfera,4,18
+4,"C4 · méxico, viaje, ciudad, hora",atmosfera,Atmósfera,5,17
+4,"C4 · méxico, viaje, ciudad, hora",imagen_cultural,Imagen cultural,2,1
+4,"C4 · méxico, viaje, ciudad, hora",imagen_cultural,Imagen cultural,3,3
+4,"C4 · méxico, viaje, ciudad, hora",imagen_cultural,Imagen cultural,4,15
+4,"C4 · méxico, viaje, ciudad, hora",imagen_cultural,Imagen cultural,5,6
+4,"C4 · méxico, viaje, ciudad, hora",perspectiva_politica,Perspectiva política,2,2
+4,"C4 · méxico, viaje, ciudad, hora",violencia,Saliencia de violencia,1,1
+5,"C5 · partido, copa, fútbol, mundo",atmosfera,Atmósfera,1,2
+7,"C7 · lindo, genial, increíble, favor",atmosfera,Atmósfera,4,1
+7,"C7 · lindo, genial, increíble, favor",imagen_cultural,Imagen cultural,4,1
+8,"C8 · vegetarian, ensalada, queso, recipes",atmosfera,Atmósfera,2,1
+8,"C8 · vegetarian, ensalada, queso, recipes",atmosfera,Atmósfera,4,1
+8,"C8 · vegetarian, ensalada, queso, recipes",imagen_cultural,Imagen cultural,2,1
+8,"C8 · vegetarian, ensalada, queso, recipes",imagen_cultural,Imagen cultural,3,6
+8,"C8 · vegetarian, ensalada, queso, recipes",imagen_cultural,Imagen cultural,4,5
+9,"C9 · rotundo, mitch, traemos, verdaderamente",violencia,Saliencia de violencia,1,1
+10,"C10 · méxico, mexicano, gente, japón",atmosfera,Atmósfera,1,7
+10,"C10 · méxico, mexicano, gente, japón",atmosfera,Atmósfera,2,8
+10,"C10 · méxico, mexicano, gente, japón",atmosfera,Atmósfera,3,1
+10,"C10 · méxico, mexicano, gente, japón",atmosfera,Atmósfera,4,3
+10,"C10 · méxico, mexicano, gente, japón",atmosfera,Atmósfera,5,2
+10,"C10 · méxico, mexicano, gente, japón",imagen_cultural,Imagen cultural,1,4
+10,"C10 · méxico, mexicano, gente, japón",imagen_cultural,Imagen cultural,2,1
+10,"C10 · méxico, mexicano, gente, japón",imagen_cultural,Imagen cultural,3,1
+10,"C10 · méxico, mexicano, gente, japón",imagen_cultural,Imagen cultural,5,1
+10,"C10 · méxico, mexicano, gente, japón",perspectiva_politica,Perspectiva política,1,9
+10,"C10 · méxico, mexicano, gente, japón",perspectiva_politica,Perspectiva política,2,2
+10,"C10 · méxico, mexicano, gente, japón",violencia,Saliencia de violencia,1,15
+11,"C11 · estadio, york, autobús, impresionante",atmosfera,Atmósfera,3,1
+11,"C11 · estadio, york, autobús, impresionante",atmosfera,Atmósfera,4,1
+11,"C11 · estadio, york, autobús, impresionante",imagen_cultural,Imagen cultural,3,2
+11,"C11 · estadio, york, autobús, impresionante",imagen_cultural,Imagen cultural,4,2
+11,"C11 · estadio, york, autobús, impresionante",perspectiva_politica,Perspectiva política,2,1
+11,"C11 · estadio, york, autobús, impresionante",perspectiva_politica,Perspectiva política,4,2
+15,"C15 · colega, cumpleaños, médico, besadme",atmosfera,Atmósfera,5,1
+18,"C18 · fujisawa, kai, hit, kamakura",atmosfera,Atmósfera,4,1
+18,"C18 · fujisawa, kai, hit, kamakura",imagen_cultural,Imagen cultural,3,1
+21,"C21 · imbécil, llama, pedófilo, zorra",atmosfera,Atmósfera,1,3
+23,"C23 · equipaje, tampón, bolsa, bolsillo",perspectiva_politica,Perspectiva política,2,1
+25,"C25 · paso, milla, corro, seguido",imagen_cultural,Imagen cultural,4,1
+28,"C28 · entrega, sim, mes, pago",atmosfera,Atmósfera,4,1
+30,"C30 · lluvia, tormenta, sol, repentino",atmosfera,Atmósfera,4,1

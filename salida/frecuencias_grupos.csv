@@ -1,0 +1,21 @@
+﻿corte,grupo,n_tuits,contraste,disjunto,n_tuits_universo,descripcion
+total,corpus,2631,sin_contraste,si,,todos los tuits del corpus
+grupo,calificado,144,z,si,2631,grupo de la rubrica: algun criterio con nivel > 0
+grupo,no_calificado,2487,z,si,2631,grupo de la rubrica: algun criterio con nivel > 0
+polaridad,positivo,76,z,si,140,"polaridad del tuit, derivada de los criterios de valencia"
+polaridad,negativo,45,z,si,140,"polaridad del tuit, derivada de los criterios de valencia"
+polaridad,ambivalente,19,z,si,140,"polaridad del tuit, derivada de los criterios de valencia"
+polaridad,sin_polaridad,4,sin_contraste,si,,calificado solo por un criterio de presencia: no tiene valencia
+criterio,atmosfera,104,se_solapa,no,,Atmósfera con nivel > 0 (escala valencia)
+criterio_valencia,atmosfera__negativo,38,z,si,104,Atmósfera en nivel 1-2 (dentro de su criterio)
+criterio_valencia,atmosfera__ambivalente,4,z,si,104,Atmósfera en nivel 3 (dentro de su criterio)
+criterio_valencia,atmosfera__positivo,62,z,si,104,Atmósfera en nivel 4-5 (dentro de su criterio)
+criterio,imagen_cultural,71,se_solapa,no,,Imagen cultural con nivel > 0 (escala valencia)
+criterio_valencia,imagen_cultural__negativo,10,z,si,71,Imagen cultural en nivel 1-2 (dentro de su criterio)
+criterio_valencia,imagen_cultural__ambivalente,20,z,si,71,Imagen cultural en nivel 3 (dentro de su criterio)
+criterio_valencia,imagen_cultural__positivo,41,z,si,71,Imagen cultural en nivel 4-5 (dentro de su criterio)
+criterio,perspectiva_politica,25,se_solapa,no,,Perspectiva política con nivel > 0 (escala valencia)
+criterio_valencia,perspectiva_politica__negativo,21,z,si,25,Perspectiva política en nivel 1-2 (dentro de su criterio)
+criterio_valencia,perspectiva_politica__ambivalente,0,z,si,25,Perspectiva política en nivel 3 (dentro de su criterio)
+criterio_valencia,perspectiva_politica__positivo,4,z,si,25,Perspectiva política en nivel 4-5 (dentro de su criterio)
+criterio,violencia,25,se_solapa,no,,Saliencia de violencia con nivel > 0 (escala presencia)

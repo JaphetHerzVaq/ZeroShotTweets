@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nubes de palabras del corpus</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.6.0/echarts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts-wordcloud/2.1.0/echarts-wordcloud.min.js"></script>
+<style>
+  :root{ color-scheme: light;
+    --sup:#fcfcfb; --plano:#f9f9f7; --tinta:#0b0b0b; --tinta2:#52514e;
+    --mudo:#898781; --grid:#e1e0d9; --borde:rgba(11,11,11,.10); }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plano);color:var(--tinta);
+       font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
+  h1{font-size:21px;margin:0 0 4px} h2{font-size:15px;margin:0 0 2px}
+  h3{font-size:14px;margin:26px 0 2px}
+  .sub{color:var(--tinta2);font-size:13px;margin:0 0 18px}
+  .nota{color:var(--mudo);font-size:12px;margin:4px 0 0}
+  .panel{background:var(--sup);border:1px solid var(--borde);border-radius:10px;
+         padding:14px 16px;margin:0 0 14px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+  .n{border:1px solid var(--grid);border-radius:999px;padding:2px 9px;
+     font-size:11px;color:var(--tinta2);font-variant-numeric:tabular-nums}
+  .aviso{background:#fff6e6;border:1px solid #f0d9a8;color:#6a4c00;
+         border-radius:8px;padding:9px 12px;margin:8px 0 0;font-size:12.5px}
+  .lienzo{width:100%}
+  /* UNA sola columna a proposito. Con dos, cada nube se dibuja en un lienzo
+     de la mitad de ancho y el mismo valor de z sale con tipografia distinta:
+     nubes de geometria distinta no se pueden comparar entre si, que es
+     justo para lo que existe esta pagina. */
+  .rejilla{display:block}
+  .control{position:sticky;top:0;z-index:5;background:var(--sup);
+           border:1px solid var(--borde);border-radius:10px;padding:10px 14px;
+           margin:0 0 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .control > span{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mudo)}
+  .chip{border:1px solid var(--grid);background:var(--sup);color:var(--tinta2);
+        border-radius:999px;padding:3px 11px;font-size:12px;cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+  table{border-collapse:collapse;font-size:12px;width:100%;
+        font-variant-numeric:tabular-nums;margin-top:8px}
+  th,td{text-align:right;padding:3px 7px;border-bottom:1px solid var(--grid)}
+  th:first-child,td:first-child{text-align:left}
+  details{margin-top:8px} summary{cursor:pointer;font-size:12px;color:var(--tinta2)}
+  .fallo{padding:40px;text-align:center;color:var(--tinta2)}
+</style>
+</head>
+<body>
+<div class="wrap" id="raiz"></div>
+<script>
+const D = {"nubes": [{"corte": "total", "grupo": "corpus", "n_tuits": 2631, "contraste": "sin_contraste", "descripcion": "todos los tuits del corpus", "color": "#52514e", "terminos": [["México", 94, 83, null, "MX_PAIS"], ["Mundial 2026", 58, 56, null, "MX_TORNEO"], ["mexicanos", 34, 31, null, "MX_PAIS"], ["Monterrey", 29, 27, null, "MX_CIUDAD_SEDE"], ["Ciudad de México", 26, 23, null, "MX_CIUDAD_SEDE"], ["Inglaterra", 26, 23, null, "LOC"], ["Japón", 22, 17, null, "LOC"], ["yonna", 20, 20, null, "PER"], ["Tengo", 18, 16, null, "MISC"], ["Yonna", 18, 17, null, "PER"], ["IA", 17, 15, null, "MISC"], ["Cancún", 15, 15, null, "MX_DESTINO"], ["América", 13, 12, null, "LOC"], ["Dios", 13, 11, null, "MISC"], ["Nueva York", 13, 13, null, "LOC"], ["Ahora", 11, 11, null, "MISC"], ["Austin", 11, 10, null, "LOC"], ["España", 11, 10, null, "LOC"], ["Minnesota", 11, 10, null, "LOC"], ["Pensé", 11, 11, null, "PER"], ["Tranmere", 11, 10, null, "PER"], ["Comisión", 10, 8, null, "ORG"], ["Cómo", 10, 10, null, "MISC"], ["Dallas", 10, 10, null, "LOC"], ["EE. UU", 10, 10, null, "LOC"], ["Tulum", 10, 10, null, "MX_DESTINO"], ["Amazon", 9, 9, null, "MISC"], ["Joder", 9, 9, null, "MISC"], ["FIFA", 8, 8, null, "MX_TORNEO"], ["Hermano", 8, 8, null, "PER"], ["Increíble", 8, 8, null, "ORG"], ["Me", 8, 8, null, "MISC"], ["Qatar", 8, 8, null, "LOC"], ["Toronto", 8, 8, null, "LOC"], ["Túnez", 8, 8, null, "LOC"], ["Alguien", 7, 7, null, "MISC"], ["Cristo", 7, 7, null, "PER"], ["Lotta-chan", 7, 4, null, "MISC"], ["Vi", 7, 7, null, "MISC"], ["cártel", 7, 6, null, "MX_CRIMEN_ORGANIZADO"], ["Argentina", 6, 6, null, "LOC"], ["Atlanta", 6, 5, null, "LOC"], ["Espero", 6, 6, null, "MISC"], ["Francia", 6, 6, null, "LOC"], ["Israel", 6, 6, null, "LOC"], ["LIMPIEZA COMERCIAL", 6, 6, null, "MISC"], ["Lotta", 6, 4, null, "PER"], ["Outlaws", 6, 6, null, "MISC"], ["Quiero", 6, 6, null, "MISC"], ["Tuchel", 6, 6, null, "PER"], ["Él", 6, 6, null, "PER"], ["Apple", 5, 5, null, "ORG"], ["Bellmare", 5, 5, null, "LOC"], ["Brasil", 5, 5, null, "LOC"], ["Cabo", 5, 5, null, "LOC"], ["Fujisawa", 5, 4, null, "LOC"], ["Guu-chan", 5, 4, null, "PER"], ["Irlanda", 5, 5, null, "LOC"], ["Los Ángeles", 5, 5, null, "LOC"], ["Marruecos", 5, 5, null, "LOC"], ["Messi", 5, 5, null, "PER"], ["Reservé", 5, 5, null, "LOC"], ["SF", 5, 5, null, "ORG"], ["Spotify", 5, 5, null, "ORG"], ["Sándwiches", 5, 3, null, "PER"], ["iHeart", 5, 5, null, "MISC"], ["Amber", 4, 4, null, "PER"], ["COVID", 4, 4, null, "ORG"], ["Clarke", 4, 4, null, "PER"], ["Diego Luna", 4, 2, null, "PER"], ["Elon", 4, 4, null, "PER"], ["Episodio", 4, 4, null, "MISC"], ["Escocia", 4, 4, null, "LOC"], ["Escucha", 4, 4, null, "LOC"], ["Estados Unidos", 4, 4, null, "LOC"], ["Europa", 4, 4, null, "LOC"], ["Evangelio", 4, 4, null, "MISC"], ["FA", 4, 4, null, "ORG"], ["HICE EL SITIO", 4, 4, null, "MISC"], ["Hamburguesas", 4, 4, null, "LOC"], ["Houston", 4, 4, null, "LOC"], ["Ince", 4, 4, null, "PER"], ["Love Island", 4, 3, null, "MISC"], ["NGHTMRE", 4, 4, null, "ORG"], ["Newport", 4, 2, null, "LOC"], ["Oye", 4, 4, null, "MISC"], ["Pablo", 4, 4, null, "PER"], ["París", 4, 4, null, "LOC"], ["Pude", 4, 4, null, "PER"], ["República de Weimar", 4, 4, null, "ORG"], ["Retrocodex", 4, 4, null, "PER"], ["SLANDER", 4, 4, null, "ORG"], ["Shonan", 4, 3, null, "LOC"], ["Sándwich", 4, 3, null, "LOC"], ["Teotihuacán", 4, 4, null, "MX_DESTINO"], ["Texas", 4, 4, null, "LOC"], ["Tramlines", 4, 3, null, "ORG"], ["el Reino Unido", 4, 4, null, "LOC"], ["reels", 4, 4, null, "MISC"], ["Adventistas del Séptimo Día", 3, 3, null, "ORG"], ["Airbnb", 3, 3, null, "ORG"], ["American Airlines", 3, 3, null, "ORG"], ["BBC", 3, 3, null, "ORG"], ["Bali", 3, 3, null, "LOC"], ["Bellingham", 3, 3, null, "PER"], ["CRÁTER", 3, 3, null, "ORG"], ["California", 3, 3, null, "LOC"], ["Canadá", 3, 3, null, "LOC"], ["Chad", 3, 3, null, "LOC"], ["Championship", 3, 3, null, "ORG"], ["Chicago", 3, 3, null, "LOC"], ["Chicos", 3, 3, null, "LOC"], ["Deberías", 3, 3, null, "PER"], ["East Austin", 3, 2, null, "LOC"], ["Estoy", 3, 3, null, "MISC"], ["Foo Fighters", 3, 3, null, "ORG"], ["Freddy", 3, 3, null, "PER"], ["Hacer", 3, 3, null, "MISC"], ["Hollywood", 3, 3, null, "LOC"], ["Hombre", 3, 3, null, "MISC"], ["Huevos", 3, 3, null, "MISC"], ["Instagram", 3, 3, null, "MISC"], ["Jabba-sama", 3, 2, null, "MISC"], ["Jeremy Boreing", 3, 3, null, "PER"], ["Jesús", 3, 3, null, "PER"], ["Judá", 3, 2, null, "LOC"], ["Kane", 3, 3, null, "PER"], ["Kenneh", 3, 3, null, "PER"], ["Las Vegas", 3, 3, null, "LOC"], ["Literalmente", 3, 3, null, "PER"], ["MRVL", 3, 2, null, "MISC"], ["Mando-san", 3, 3, null, "PER"], ["NY", 3, 3, null, "LOC"], ["NYC", 3, 3, null, "LOC"], ["Nah", 3, 3, null, "MISC"], ["Necesitamos", 3, 3, null, "MISC"], ["Norteamérica", 3, 2, null, "LOC"], ["Oaxaca", 3, 3, null, "MX_DESTINO"], ["Pan", 3, 2, null, "PER"], ["Pep", 3, 3, null, "PER"], ["Playa del Carmen", 3, 3, null, "MX_DESTINO"], ["PopUp Bagels", 3, 2, null, "LOC"], ["Portugal", 3, 3, null, "LOC"], ["Puerto Vallarta", 3, 2, null, "MX_DESTINO"], ["Qué", 3, 3, null, "MISC"], ["Reino Unido", 3, 3, null, "LOC"], ["Sigue", 3, 3, null, "MISC"], ["Sin embargo", 3, 3, null, "MISC"], ["Starbucks", 3, 3, null, "ORG"], ["Sudáfrica", 3, 3, null, "LOC"], ["Suscríbete Ahora", 3, 3, null, "LOC"], ["TODOS", 3, 3, null, "MISC"], ["TOMA DE CONTROL DEL", 3, 3, null, "MISC"], ["Taco Bell", 3, 2, null, "PER"], ["The Mandalorian", 3, 3, null, "MISC"], ["TikTok", 3, 3, null, "MISC"], ["Tokio", 3, 3, null, "LOC"], ["Tom Ince", 3, 3, null, "PER"], ["Tostadas", 3, 3, null, "MISC"], ["Trump", 3, 3, null, "PER"], ["Twitch", 3, 3, null, "ORG"], ["Túnez 🇹", 3, 3, null, "ORG"], ["USA", 3, 3, null, "LOC"], ["Uber", 3, 3, null, "MISC"], ["Ugh", 3, 3, null, "MISC"], ["Ve al blog", 3, 3, null, "MISC"], ["Visita", 3, 3, null, "LOC"], ["Waymo", 3, 2, null, "ORG"], ["aeropuerto de", 3, 3, null, "LOC"], ["bueno", 3, 3, null, "MISC"]], "hay_z": false}, {"corte": "grupo", "grupo": "calificado", "n_tuits": 144, "contraste": "z", "descripcion": "grupo de la rubrica: algun criterio con nivel > 0", "color": "#eb6834", "terminos": [["México", 63, 55, 6.538, "MX_PAIS"], ["mexicanos", 28, 25, 4.845, "MX_PAIS"], ["Ciudad de México", 21, 18, 4.141, "MX_CIUDAD_SEDE"], ["Monterrey", 15, 14, 2.623, "MX_CIUDAD_SEDE"], ["Mundial 2026", 12, 10, 0.914, "MX_TORNEO"], ["Cancún", 7, 7, 1.652, "MX_DESTINO"], ["Inglaterra", 7, 6, 0.988, "LOC"], ["Japón", 6, 6, 0.927, "LOC"], ["Tulum", 5, 5, 1.469, "MX_DESTINO"], ["Me", 4, 4, 1.313, "MISC"], ["Teotihuacán", 4, 4, 2.008, "MX_DESTINO"], ["Nueva York", 3, 3, 0.53, "LOC"], ["Oaxaca", 3, 3, 1.738, "MX_DESTINO"]], "hay_z": true}, {"corte": "grupo", "grupo": "no_calificado", "n_tuits": 2487, "contraste": "z", "descripcion": "grupo de la rubrica: algun criterio con nivel > 0", "color": "#898781", "terminos": [["Mundial 2026", 46, 46, -0.914, "MX_TORNEO"], ["México", 31, 28, -6.538, "MX_PAIS"], ["yonna", 20, 20, 0.581, "PER"], ["Inglaterra", 19, 17, -0.988, "LOC"], ["IA", 17, 15, 0.535, "MISC"], ["Tengo", 17, 15, 0.268, "MISC"], ["Yonna", 17, 16, 0.268, "PER"], ["Japón", 16, 11, -0.927, "LOC"], ["Monterrey", 14, 13, -2.623, "MX_CIUDAD_SEDE"], ["Dios", 13, 11, 0.467, "MISC"], ["América", 11, 10, -0.198, "LOC"], ["Austin", 11, 10, 0.43, "LOC"], ["Minnesota", 11, 10, 0.43, "LOC"], ["Pensé", 11, 11, 0.43, "PER"], ["Comisión", 10, 8, 0.41, "ORG"], ["Cómo", 10, 10, 0.41, "MISC"], ["España", 10, 9, 0.068, "LOC"], ["Nueva York", 10, 10, -0.53, "LOC"], ["Tranmere", 10, 9, 0.068, "PER"], ["Ahora", 9, 9, -0.293, "MISC"], ["Amazon", 9, 9, 0.388, "MISC"], ["Dallas", 9, 9, 0.031, "LOC"], ["EE. UU", 9, 9, 0.031, "LOC"], ["Cancún", 8, 8, -1.652, "MX_DESTINO"], ["Hermano", 8, 8, 0.366, "PER"], ["Increíble", 8, 8, 0.366, "ORG"], ["Joder", 8, 8, -0.011, "MISC"], ["Alguien", 7, 7, 0.342, "MISC"], ["Cristo", 7, 7, 0.342, "PER"], ["FIFA", 7, 7, -0.057, "MX_TORNEO"], ["Lotta-chan", 7, 4, 0.342, "MISC"], ["Qatar", 7, 7, -0.057, "LOC"], ["Toronto", 7, 7, -0.057, "LOC"], ["Vi", 7, 7, 0.342, "MISC"], ["cártel", 7, 6, 0.342, "MX_CRIMEN_ORGANIZADO"], ["Argentina", 6, 6, 0.317, "LOC"], ["Espero", 6, 6, 0.317, "MISC"], ["Francia", 6, 6, 0.317, "LOC"], ["Israel", 6, 6, 0.317, "LOC"], ["LIMPIEZA COMERCIAL", 6, 6, 0.317, "MISC"], ["Outlaws", 6, 6, 0.317, "MISC"], ["Tuchel", 6, 6, 0.317, "PER"], ["Túnez", 6, 6, -0.48, "LOC"], ["mexicanos", 6, 6, -4.845, "MX_PAIS"], ["Él", 6, 6, 0.317, "PER"], ["Apple", 5, 5, 0.289, "ORG"], ["Atlanta", 5, 4, -0.172, "LOC"], ["Brasil", 5, 5, 0.289, "LOC"], ["Ciudad de México", 5, 5, -4.141, "MX_CIUDAD_SEDE"], ["Fujisawa", 5, 4, 0.289, "LOC"], ["Guu-chan", 5, 4, 0.289, "PER"], ["Irlanda", 5, 5, 0.289, "LOC"], ["Lotta", 5, 3, -0.172, "PER"], ["Marruecos", 5, 5, 0.289, "LOC"], ["Messi", 5, 5, 0.289, "PER"], ["Quiero", 5, 5, -0.172, "MISC"], ["Reservé", 5, 5, 0.289, "LOC"], ["SF", 5, 5, 0.289, "ORG"], ["Spotify", 5, 5, 0.289, "ORG"], ["Sándwiches", 5, 3, 0.289, "PER"], ["Tulum", 5, 5, -1.469, "MX_DESTINO"], ["iHeart", 5, 5, 0.289, "MISC"], ["Amber", 4, 4, 0.259, "PER"], ["Bellmare", 4, 4, -0.246, "LOC"], ["COVID", 4, 4, 0.259, "ORG"], ["Clarke", 4, 4, 0.259, "PER"], ["Elon", 4, 4, 0.259, "PER"], ["Episodio", 4, 4, 0.259, "MISC"], ["Escocia", 4, 4, 0.259, "LOC"], ["Escucha", 4, 4, 0.259, "LOC"], ["Europa", 4, 4, 0.259, "LOC"], ["Evangelio", 4, 4, 0.259, "MISC"], ["FA", 4, 4, 0.259, "ORG"], ["HICE EL SITIO", 4, 4, 0.259, "MISC"], ["Houston", 4, 4, 0.259, "LOC"], ["Ince", 4, 4, 0.259, "PER"], ["Los Ángeles", 4, 4, -0.246, "LOC"], ["Love Island", 4, 3, 0.259, "MISC"], ["Me", 4, 4, -1.313, "MISC"], ["NGHTMRE", 4, 4, 0.259, "ORG"], ["Newport", 4, 2, 0.259, "LOC"], ["Oye", 4, 4, 0.259, "MISC"], ["Pablo", 4, 4, 0.259, "PER"], ["París", 4, 4, 0.259, "LOC"], ["Pude", 4, 4, 0.259, "PER"], ["República de Weimar", 4, 4, 0.259, "ORG"], ["Retrocodex", 4, 4, 0.259, "PER"], ["SLANDER", 4, 4, 0.259, "ORG"], ["Sándwich", 4, 3, 0.259, "LOC"], ["Tramlines", 4, 3, 0.259, "ORG"], ["el Reino Unido", 4, 4, 0.259, "LOC"], ["reels", 4, 4, 0.259, "MISC"], ["Adventistas del Séptimo Día", 3, 3, 0.224, "ORG"], ["American Airlines", 3, 3, 0.224, "ORG"], ["BBC", 3, 3, 0.224, "ORG"], ["Bali", 3, 3, 0.224, "LOC"], ["Bellingham", 3, 3, 0.224, "PER"], ["CRÁTER", 3, 3, 0.224, "ORG"], ["Cabo", 3, 3, -0.777, "LOC"], ["California", 3, 3, 0.224, "LOC"], ["Canadá", 3, 3, 0.224, "LOC"], ["Chad", 3, 3, 0.224, "LOC"], ["Championship", 3, 3, 0.224, "ORG"], ["Chicago", 3, 3, 0.224, "LOC"], ["Chicos", 3, 3, 0.224, "LOC"], ["Deberías", 3, 3, 0.224, "PER"], ["East Austin", 3, 2, 0.224, "LOC"], ["Estados Unidos", 3, 3, -0.339, "LOC"], ["Estoy", 3, 3, 0.224, "MISC"], ["Foo Fighters", 3, 3, 0.224, "ORG"], ["Freddy", 3, 3, 0.224, "PER"], ["Hacer", 3, 3, 0.224, "MISC"], ["Hamburguesas", 3, 3, -0.339, "LOC"], ["Hollywood", 3, 3, 0.224, "LOC"], ["Hombre", 3, 3, 0.224, "MISC"], ["Huevos", 3, 3, 0.224, "MISC"], ["Instagram", 3, 3, 0.224, "MISC"], ["Jabba-sama", 3, 2, 0.224, "MISC"], ["Jeremy Boreing", 3, 3, 0.224, "PER"], ["Jesús", 3, 3, 0.224, "PER"], ["Judá", 3, 2, 0.224, "LOC"], ["Kane", 3, 3, 0.224, "PER"], ["Kenneh", 3, 3, 0.224, "PER"], ["Las Vegas", 3, 3, 0.224, "LOC"], ["Literalmente", 3, 3, 0.224, "PER"], ["MRVL", 3, 2, 0.224, "MISC"], ["Mando-san", 3, 3, 0.224, "PER"], ["NY", 3, 3, 0.224, "LOC"], ["NYC", 3, 3, 0.224, "LOC"], ["Nah", 3, 3, 0.224, "MISC"], ["Necesitamos", 3, 3, 0.224, "MISC"], ["Norteamérica", 3, 2, 0.224, "LOC"], ["Pan", 3, 2, 0.224, "PER"], ["Pep", 3, 3, 0.224, "PER"], ["PopUp Bagels", 3, 2, 0.224, "LOC"], ["Qué", 3, 3, 0.224, "MISC"], ["Reino Unido", 3, 3, 0.224, "LOC"], ["Sigue", 3, 3, 0.224, "MISC"], ["Starbucks", 3, 3, 0.224, "ORG"], ["Suscríbete Ahora", 3, 3, 0.224, "LOC"], ["TODOS", 3, 3, 0.224, "MISC"], ["TOMA DE CONTROL DEL", 3, 3, 0.224, "MISC"], ["Taco Bell", 3, 2, 0.224, "PER"], ["Texas", 3, 3, -0.339, "LOC"], ["The Mandalorian", 3, 3, 0.224, "MISC"], ["TikTok", 3, 3, 0.224, "MISC"], ["Tom Ince", 3, 3, 0.224, "PER"], ["Tostadas", 3, 3, 0.224, "MISC"], ["Trump", 3, 3, 0.224, "PER"], ["Twitch", 3, 3, 0.224, "ORG"], ["Túnez 🇹", 3, 3, 0.224, "ORG"], ["USA", 3, 3, 0.224, "LOC"], ["Visita", 3, 3, 0.224, "LOC"], ["Waymo", 3, 2, 0.224, "ORG"], ["bueno", 3, 3, 0.224, "MISC"]], "hay_z": true}, {"corte": "polaridad", "grupo": "positivo", "n_tuits": 76, "contraste": "z", "descripcion": "polaridad del tuit, derivada de los criterios de valencia", "color": "#2a78d6", "terminos": [["México", 39, 35, 0.28, "MX_PAIS"], ["Ciudad de México", 16, 13, 0.941, "MX_CIUDAD_SEDE"], ["mexicanos", 15, 13, -0.38, "MX_PAIS"], ["Mundial 2026", 9, 8, 0.646, "MX_TORNEO"], ["Monterrey", 5, 5, -1.205, "MX_CIUDAD_SEDE"], ["Japón", 4, 4, 0.211, "LOC"], ["Cancún", 3, 3, -0.269, "MX_DESTINO"], ["Inglaterra", 3, 3, -0.513, "LOC"], ["Me", 3, 3, 0.365, "MISC"], ["Nueva York", 3, 3, 0.81, "LOC"], ["Oaxaca", 3, 3, 0.81, "MX_DESTINO"], ["Tulum", 3, 3, 0.017, "MX_DESTINO"]], "hay_z": true}, {"corte": "polaridad", "grupo": "negativo", "n_tuits": 45, "contraste": "z", "descripcion": "polaridad del tuit, derivada de los criterios de valencia", "color": "#e34948", "terminos": [["México", 20, 16, 0.382, "MX_PAIS"], ["mexicanos", 12, 11, 0.968, "MX_PAIS"], ["Ciudad de México", 5, 5, -0.253, "MX_CIUDAD_SEDE"], ["Monterrey", 5, 4, 0.237, "MX_CIUDAD_SEDE"], ["Inglaterra", 4, 3, 0.902, "LOC"], ["Cancún", 3, 3, 0.628, "MX_DESTINO"], ["Mundial 2026", 3, 2, -0.137, "MX_TORNEO"]], "hay_z": true}, {"corte": "polaridad", "grupo": "ambivalente", "n_tuits": 19, "contraste": "z", "descripcion": "polaridad del tuit, derivada de los criterios de valencia", "color": "#eda100", "terminos": [["Monterrey", 5, 5, 1.004, "MX_CIUDAD_SEDE"], ["México", 4, 4, -0.677, "MX_PAIS"]], "hay_z": true}, {"corte": "polaridad", "grupo": "sin_polaridad", "n_tuits": 4, "contraste": "sin_contraste", "descripcion": "calificado solo por un criterio de presencia: no tiene valencia", "color": "#52514e", "terminos": [], "hay_z": false}, {"corte": "criterio", "grupo": "atmosfera", "n_tuits": 104, "contraste": "se_solapa", "descripcion": "Atmósfera con nivel > 0 (escala valencia)", "color": "#52514e", "terminos": [["México", 58, 50, null, "MX_PAIS"], ["mexicanos", 25, 22, null, "MX_PAIS"], ["Ciudad de México", 20, 17, null, "MX_CIUDAD_SEDE"], ["Monterrey", 10, 9, null, "MX_CIUDAD_SEDE"], ["Mundial 2026", 10, 9, null, "MX_TORNEO"], ["Cancún", 6, 6, null, "MX_DESTINO"], ["Inglaterra", 6, 5, null, "LOC"], ["Japón", 5, 5, null, "LOC"], ["Me", 4, 4, null, "MISC"], ["Nueva York", 3, 3, null, "LOC"]], "hay_z": false}, {"corte": "criterio_valencia", "grupo": "atmosfera__negativo", "n_tuits": 38, "contraste": "z", "descripcion": "Atmósfera en nivel 1-2 (dentro de su criterio)", "color": "#e34948", "terminos": [["México", 17, 13, -0.285, "MX_PAIS"], ["mexicanos", 12, 11, 1.017, "MX_PAIS"], ["Ciudad de México", 5, 5, -0.385, "MX_CIUDAD_SEDE"], ["Monterrey", 5, 4, 0.686, "MX_CIUDAD_SEDE"], ["Inglaterra", 4, 3, 1.001, "LOC"], ["Cancún", 3, 3, 0.524, "MX_DESTINO"]], "hay_z": true}, {"corte": "criterio_valencia", "grupo": "atmosfera__ambivalente", "n_tuits": 4, "contraste": "z", "descripcion": "Atmósfera en nivel 3 (dentro de su criterio)", "color": "#eda100", "terminos": [], "hay_z": true}, {"corte": "criterio_valencia", "grupo": "atmosfera__positivo", "n_tuits": 62, "contraste": "z", "descripcion": "Atmósfera en nivel 4-5 (dentro de su criterio)", "color": "#2a78d6", "terminos": [["México", 39, 35, 0.122, "MX_PAIS"], ["Ciudad de México", 15, 12, 0.493, "MX_CIUDAD_SEDE"], ["mexicanos", 13, 11, -0.892, "MX_PAIS"], ["Mundial 2026", 9, 8, 0.902, "MX_TORNEO"], ["Japón", 4, 4, 0.366, "LOC"], ["Monterrey", 4, 4, -0.987, "MX_CIUDAD_SEDE"], ["Cancún", 3, 3, -0.467, "MX_DESTINO"], ["Me", 3, 3, 0.209, "MISC"], ["Nueva York", 3, 3, 0.681, "LOC"]], "hay_z": true}, {"corte": "criterio", "grupo": "imagen_cultural", "n_tuits": 71, "contraste": "se_solapa", "descripcion": "Imagen cultural con nivel > 0 (escala valencia)", "color": "#52514e", "terminos": [["México", 29, 27, null, "MX_PAIS"], ["Ciudad de México", 13, 10, null, "MX_CIUDAD_SEDE"], ["mexicanos", 12, 11, null, "MX_PAIS"], ["Monterrey", 9, 9, null, "MX_CIUDAD_SEDE"], ["Mundial 2026", 5, 4, null, "MX_TORNEO"], ["Inglaterra", 4, 4, null, "LOC"], ["Teotihuacán", 4, 4, null, "MX_DESTINO"], ["Oaxaca", 3, 3, null, "MX_DESTINO"]], "hay_z": false}, {"corte": "criterio_valencia", "grupo": "imagen_cultural__negativo", "n_tuits": 10, "contraste": "z", "descripcion": "Imagen cultural en nivel 1-2 (dentro de su criterio)", "color": "#e34948", "terminos": [["México", 6, 6, 0.415, "MX_PAIS"], ["mexicanos", 4, 4, 0.794, "MX_PAIS"]], "hay_z": true}, {"corte": "criterio_valencia", "grupo": "imagen_cultural__ambivalente", "n_tuits": 20, "contraste": "z", "descripcion": "Imagen cultural en nivel 3 (dentro de su criterio)", "color": "#eda100", "terminos": [["México", 6, 6, -0.383, "MX_PAIS"], ["Monterrey", 5, 5, 1.079, "MX_CIUDAD_SEDE"]], "hay_z": true}, {"corte": "criterio_valencia", "grupo": "imagen_cultural__positivo", "n_tuits": 41, "contraste": "z", "descripcion": "Imagen cultural en nivel 4-5 (dentro de su criterio)", "color": "#2a78d6", "terminos": [["México", 17, 15, -0.025, "MX_PAIS"], ["Ciudad de México", 11, 8, 1.133, "MX_CIUDAD_SEDE"], ["mexicanos", 7, 6, -0.027, "MX_PAIS"], ["Inglaterra", 3, 3, 0.377, "LOC"], ["Monterrey", 3, 3, -0.924, "MX_CIUDAD_SEDE"], ["Mundial 2026", 3, 3, 0.027, "MX_TORNEO"], ["Oaxaca", 3, 3, 0.822, "MX_DESTINO"]], "hay_z": true}, {"corte": "criterio", "grupo": "perspectiva_politica", "n_tuits": 25, "contraste": "se_solapa", "descripcion": "Perspectiva política con nivel > 0 (escala valencia)", "color": "#52514e", "terminos": [["México", 12, 10, null, "MX_PAIS"], ["Monterrey", 6, 5, null, "MX_CIUDAD_SEDE"], ["Ciudad de México", 5, 5, null, "MX_CIUDAD_SEDE"], ["mexicanos", 4, 4, null, "MX_PAIS"]], "hay_z": false}, {"corte": "criterio_valencia", "grupo": "perspectiva_politica__negativo", "n_tuits": 21, "contraste": "z", "descripcion": "Perspectiva política en nivel 1-2 (dentro de su criterio)", "color": "#e34948", "terminos": [["México", 12, 10, 1.026, "MX_PAIS"], ["Ciudad de México", 5, 5, 0.59, "MX_CIUDAD_SEDE"], ["Monterrey", 4, 3, -0.394, "MX_CIUDAD_SEDE"], ["mexicanos", 3, 3, -0.103, "MX_PAIS"]], "hay_z": true}, {"corte": "criterio_valencia", "grupo": "perspectiva_politica__ambivalente", "n_tuits": 0, "contraste": "z", "descripcion": "Perspectiva política en nivel 3 (dentro de su criterio)", "color": "#eda100", "terminos": [], "hay_z": false}, {"corte": "criterio_valencia", "grupo": "perspectiva_politica__positivo", "n_tuits": 4, "contraste": "z", "descripcion": "Perspectiva política en nivel 4-5 (dentro de su criterio)", "color": "#2a78d6", "terminos": [], "hay_z": true}, {"corte": "criterio", "grupo": "violencia", "n_tuits": 25, "contraste": "se_solapa", "descripcion": "Saliencia de violencia con nivel > 0 (escala presencia)", "color": "#52514e", "terminos": [["México", 16, 13, null, "MX_PAIS"], ["mexicanos", 6, 5, null, "MX_PAIS"], ["Cancún", 4, 4, null, "MX_DESTINO"], ["Ciudad de México", 4, 4, null, "MX_CIUDAD_SEDE"], ["Monterrey", 4, 3, null, "MX_CIUDAD_SEDE"]], "hay_z": false}], "titulos": {"total": "Todo el corpus", "grupo": "Grupos de la rúbrica · calificado contra no calificado", "polaridad": "Polaridad del tuit · cada grupo contra el resto de los que tienen valencia", "criterio": "Por criterio de la rúbrica · presencia, mezclando todos los niveles", "criterio_valencia": "Criterio × valencia · el nivel dentro de cada criterio"}, "ficha": {"n_tuits": 2631, "origen": "salida\\frecuencias_entidades.csv", "forma": "circle", "mascara": null, "mascara_aspecto": null, "mascara_nombre": "", "fondo": null, "alto": 460, "rejilla": 8, "min_soporte": 3, "min_terminos": 25, "pie": "Las nubes de frecuencia describen un universo: el tamaño es cuántas veces aparece el término. Las de z comparan un grupo contra el resto de su universo con log-odds con prior informativo (Monroe, Colaresi y Quinn, 2008), y ahí el tamaño NO es la valencia sino cuán característico es el término de su grupo. No se concluye nada de los grupos chicos: son descriptivos de una rúbrica aplicada por un modelo de lenguaje, no por codificadores humanos.", "top": 200, "tam": [9, 52], "curva": 1.7, "base": 0.0, "color": "categoria", "paleta_categoria": {"MX_PAIS": "#c62f2e", "MX_CIUDAD_SEDE": "#eb6834", "MX_DESTINO": "#eda100", "MX_ESTADIO": "#b45309", "MX_INSTITUCION": "#4a3aa7", "MX_PERSONA_PUBLICA": "#9333ea", "MX_CRIMEN_ORGANIZADO": "#be123c", "MX_TORNEO": "#0369a1", "LOC": "#1baf7a", "PER": "#6b7280", "ORG": "#52514e", "MISC": "#a8a29e", "ADJ": "#c2410c", "NOUN": "#2a78d6", "PROPN": "#0f766e"}, "nombre_categoria": {"ADJ": "adjetivo · evalúa", "NOUN": "sustantivo · tema", "PROPN": "nombre propio · sitúa"}}};
+const RAIZ = document.getElementById('raiz');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const el = h => { const d=document.createElement('div'); d.innerHTML=h.trim(); return d.firstChild; };
+
+/* Dos modos de falla, no uno: si falta solo la extension, el resto de la
+   pagina sirve y hay que decir que faltan las nubes, no dejarlas en blanco. */
+const HAY_ECHARTS = typeof echarts !== 'undefined';
+let HAY_NUBE = false;
+if (HAY_ECHARTS) {
+  try {
+    const d=document.createElement('div');
+    d.style.cssText='width:64px;height:64px;position:absolute;left:-9999px;top:0';
+    document.body.appendChild(d);
+    const ch=echarts.init(d);
+    ch.setOption({series:[{type:'wordCloud',data:[{name:'x',value:1}]}]});
+    HAY_NUBE = ch.getModel().getSeriesByType('wordCloud').length > 0;
+    ch.dispose(); d.remove();
+  } catch(e) { HAY_NUBE = false; }
+}
+
+RAIZ.appendChild(el('<h1>Nubes de palabras del corpus</h1>'));
+RAIZ.appendChild(el('<p class="sub">'+D.ficha.n_tuits+' tuits · lemas y entidades de spaCy sobre la '
+  +'<b>traducción automática</b> al español, el único espacio donde un corpus multilingüe es comparable. '
+  +'Generado desde <code>'+esc(D.ficha.origen)+'</code>.</p>'));
+
+if (!HAY_ECHARTS) {
+  RAIZ.innerHTML = '<div class="fallo"><h1>No se pudo cargar la biblioteca de gráficas</h1>'
+    + '<p>Esta página dibuja con Apache ECharts desde <code>https://cdnjs.cloudflare.com/ajax/libs/echarts/5.6.0/echarts.min.js</code> y la petición no llegó.'
+    + ' Los datos están dentro del archivo: recupera la conexión y recarga.</p></div>';
+} else if (!HAY_NUBE) {
+  RAIZ.appendChild(el('<p class="aviso">No se pudo cargar <code>echarts-wordcloud</code> '
+    + 'desde <code>https://cdnjs.cloudflare.com/ajax/libs/echarts-wordcloud/2.1.0/echarts-wordcloud.min.js</code>. Las tablas de cada panel sí traen los datos.</p>'));
+}
+/* dibujar() se llama AL FINAL del script, no aquí: MODO se declara con let más
+   abajo y llamarla antes cae en su zona muerta temporal. */
+
+function tablaDe(n, modo){
+  const L = elegir(n, modo);
+  const cab = ['término','ocurrencias','tuits'].concat(n.hay_z ? ['z'] : []);
+  return '<details><summary>ver los '+L.length+' términos de esta nube</summary>'
+    + '<table><tr>'+cab.map(c=>'<th>'+c+'</th>').join('')+'</tr>'
+    + L.map(t=>'<tr><td>'+esc(t[0])+'</td><td>'+t[1]+'</td><td>'+t[2]+'</td>'
+        +(n.hay_z?'<td>'+(t[3]===null?'—':t[3])+'</td>':'')+'</tr>').join('')
+    + '</table></details>';
+}
+
+/* MEDIDAS. El tamaño es una elección de lectura, no una propiedad del dato,
+   y por eso se elige en la página en vez de congelarse al generarla:
+     ocurrencias  cuánto se dice           -> los términos comunes dominan
+     tuits        en cuántos tuits se dice  -> una palabra repetida no infla
+     z            cuán característico es     -> el ancla se encoge sola          */
+const MEDIDAS = {
+  ocurrencias: {i:1, rotulo:'ocurrencias'},
+  tuits:       {i:2, rotulo:'tuits'},
+  z:           {i:3, rotulo:'z de log-odds'},
+};
+/* Por omision TUITS, no ocurrencias: cuenta en cuantos tuits se dice algo, no
+   cuantas veces se tecleo. Un solo tuit que repite una palabra no puede
+   inflarla -- "tacos" sale 5 veces pero en 2 tuits --, asi que el ranking es
+   mas defendible. */
+let MODO = 'tuits';
+
+function elegir(n, modo){
+  const m = MEDIDAS[modo] || MEDIDAS.ocurrencias;
+  let L = n.terminos.filter(t => t[m.i] !== null && t[m.i] !== undefined);
+  /* El soporte se aplica a la MEDIDA ACTIVA, no siempre a las ocurrencias: un
+     término con 3 ocurrencias en un solo tuit pasaría un filtro de ocurrencias
+     y se dibujaría como si tuviera respaldo, cuando lo dijo una sola persona.
+     En modo z el soporte sigue siendo de ocurrencias, porque z no es un
+     recuento y su propio umbral es que sea positiva. */
+  if (modo === 'z') L = L.filter(t => t[3] > 0 && t[1] >= D.ficha.min_soporte);
+  else L = L.filter(t => t[m.i] >= D.ficha.min_soporte);
+  return L.sort((a,b) => (b[m.i] - a[m.i]) || (a[0] < b[0] ? -1 : 1)).slice(0, D.ficha.top);
+}
+
+function panel(cont, n, modo){
+  const L = elegir(n, modo), m = MEDIDAS[modo];
+  const s = document.createElement('section');
+  s.className = 'panel';
+  const chips = ['<span class="n">'+n.n_tuits+' tuits</span>',
+                 '<span class="n">'+L.length+' términos</span>',
+                 '<span class="n">tamaño: '+esc(m.rotulo)+'</span>'];
+  let h = '<h2>'+esc(n.grupo.replace(/__/g,' · ').replace(/_/g,' '))+'</h2>'
+        + '<p class="nota">'+esc(n.descripcion)+'</p>'
+        + '<div class="chips">'+chips.join('')+'</div>';
+  const avisos = [];
+  if (!L.length)
+    avisos.push('<b>Omitida.</b> Ningún término alcanza el soporte mínimo ('
+      + D.ficha.min_soporte + ' apariciones en el grupo) en estos ' + n.n_tuits + ' tuits.');
+  else if (L.length < D.ficha.min_terminos)
+    avisos.push('<b>Vocabulario escaso.</b> '+n.n_tuits+' tuits y '+L.length
+      + ' términos, por debajo de los '+D.ficha.min_terminos+' declarados: <b>no es comparable</b> con las nubes grandes.');
+  if (modo === 'z' && L.length)
+    avisos.push('<b>El tamaño no es la valencia.</b> Es cuán <b>característico</b> es el término '
+      + 'de este grupo frente al resto de su universo: un término repartido por igual entre los '
+      + 'grupos sale pequeño aunque sea el más frecuente aquí.');
+  if (modo !== 'z' && L.length && n.hay_z)
+    avisos.push('El tamaño es <b>frecuencia</b>: los términos comunes al corpus —«méxico» el primero— '
+      + 'pesan por ser comunes, no por ser propios de este grupo. Cambia a <b>z</b> arriba para verlo al revés.');
+  if (D.ficha.mascara && L.length)
+    avisos.push((D.ficha.fondo ? '' : '')
+      + '<b>Con m\u00e1scara se pierden t\u00e9rminos.</b> Las palabras solo caben en el \u00e1rea '
+      + 'opaca de <code>'+esc(D.ficha.mascara_nombre)+'</code>, y las que no entran se descartan '
+      + '<b>sin avisar cu\u00e1ntas</b>. Se piden '+L.length+'; cu\u00e1ntas se dibujan no lo dice la biblioteca.');
+  if (n.contraste === 'se_solapa')
+    avisos.push('Este corte <b>se solapa</b>: un tuit puede estar en varios de sus grupos, '
+      + 'así que no admite uno-contra-resto y no tiene z.');
+  avisos.forEach(a => h += '<p class="aviso">'+a+'</p>');
+  if (L.length) {
+    h += '<div class="lienzo" style="height:'+D.ficha.alto+'px"></div>';
+    if (D.ficha.color === 'categoria') {
+      const cats = [...new Set(L.map(t=>t[4]).filter(Boolean))].sort();
+      if (cats.length) h += '<div class="chips">' + cats.map(c =>
+        '<span class="n" style="border-color:'+(D.ficha.paleta_categoria[c]||n.color)
+        + ';color:'+(D.ficha.paleta_categoria[c]||n.color)+'">'
+        + esc(D.ficha.nombre_categoria[c] || c)+'</span>').join('') + '</div>';
+    }
+  }
+  h += tablaDe(n, modo);
+  s.innerHTML = h;
+  cont.appendChild(s);
+  return s.querySelector('.lienzo');
+}
+
+function pintar(lienzo, n, modo, mascara){
+  if (!lienzo) return;
+  if (!HAY_NUBE) { lienzo.innerHTML =
+    '<p class="aviso">Sin la extensión de nubes; los términos están en la tabla.</p>'; return; }
+  const m = MEDIDAS[modo], L = elegir(n, modo);
+  const vals = L.map(t=>t[m.i]);
+  const max = Math.max.apply(null, vals), min = Math.min.apply(null, vals);
+  const mezcla = (hex, f) => {
+    const c = parseInt(hex.slice(1), 16);
+    const r = c>>16, g = (c>>8)&255, b = c&255;
+    /* El piso NO baja de 0.55: por debajo, los términos de peso bajo quedan
+       ilegibles sobre el fondo claro. */
+    const q = v => Math.round(245 + (v - 245) * (0.55 + 0.45 * f));
+    return 'rgb('+q(r)+','+q(g)+','+q(b)+')';
+  };
+  /* La biblioteca mapea `value` a tamaño LINEALMENTE dentro de sizeRange, así
+     que la curva se aplica aquí: se normaliza el peso a 0..1 y se eleva al
+     exponente. El peso real no se pierde — el tooltip y la tabla siguen
+     leyendo las columnas originales.
+       curva > 1  amplifica: los grandes crecen y los chicos se achican
+       curva = 1  lineal (el tamaño es la altura)
+       curva = 0.5 hace el AREA proporcional al peso, no la altura */
+  const curvado = v => {
+    /* EXPONENCIAL: el tamaño se multiplica por `base` en cada unidad de peso.
+       Satura muy pronto -- con base 2 y rango 9..60 px, todo lo que pase de
+       ~3 unidades por encima del mínimo sale al máximo --, así que amplifica
+       la COLA y aplasta la cabeza. Se ofrece porque es una lectura legítima
+       cuando la mayoría de los términos vive en 1..3, pero deja de distinguir
+       entre los más frecuentes. */
+    if (D.ficha.base > 1) {
+      const s = Math.min(D.ficha.tam[1], D.ficha.tam[0] * Math.pow(D.ficha.base, v - min));
+      return (s - D.ficha.tam[0]) / (D.ficha.tam[1] - D.ficha.tam[0]);
+    }
+    const f = max > min ? (v - min) / (max - min) : 1;
+    return Math.pow(f, D.ficha.curva);
+  };
+  const colorDe = t => {
+    if (D.ficha.color === 'plano') return n.color;
+    if (D.ficha.color === 'categoria') return D.ficha.paleta_categoria[t[4]] || n.color;
+    /* El color sigue la MISMA curva que el tamaño: si no, color y tamaño
+       contarían historias distintas del mismo número. */
+    return mezcla(n.color, curvado(t[m.i]));
+  };
+  const serie = {
+    type:'wordCloud', shape: D.ficha.forma, drawOutOfBound:false,
+    gridSize: D.ficha.rejilla, sizeRange: D.ficha.tam,
+    /* Determinista: sin rotación y con rejilla fija, la misma entrada da
+       siempre la misma figura y la página puede citarse. */
+    rotationRange:[0,0], rotationStep:90,
+    width:'96%', height:'92%', left:'center', top:'center',
+    data: L.map(t=>({name:t[0], value:curvado(t[m.i]),
+      textStyle:{color:colorDe(t), fontWeight: t[m.i] >= max*0.6 ? 600 : 400}}))
+  };
+  if (mascara) {
+    serie.maskImage = mascara;
+    /* El fondo se alinea con el AREA DE DIBUJO, no con el lienzo: la nube se
+       dibuja centrada en un rectangulo de hpx x (hpx*aspecto), y la figura
+       tiene que ocupar exactamente ese rectangulo o las palabras caen fuera de
+       sus huecos. */
+    if (D.ficha.fondo) {
+      const hpx0 = Math.round(D.ficha.alto * 0.92);
+      const wpx0 = Math.round(hpx0 * (D.ficha.mascara_aspecto || 1));
+      lienzo.style.backgroundImage = 'url(' + D.ficha.fondo + ')';
+      lienzo.style.backgroundRepeat = 'no-repeat';
+      lienzo.style.backgroundPosition = 'center';
+      lienzo.style.backgroundSize = wpx0 + 'px ' + hpx0 + 'px';
+    }
+    /* La mascara se estira al area de dibujo. Si el area no tiene su misma
+       proporcion la figura sale deformada, asi que se estrecha el area en vez
+       de deformar el balon. */
+    const hpx = Math.round(D.ficha.alto * 0.92);
+    serie.height = hpx + 'px';
+    serie.width = Math.round(hpx * (D.ficha.mascara_aspecto || 1)) + 'px';
+  }
+  const ch = echarts.getInstanceByDom(lienzo) || echarts.init(lienzo);
+  ch.setOption({
+    tooltip:{confine:true, formatter:q=>{
+      const t = L.find(x=>x[0]===q.name) || [];
+      return '<b>'+esc(q.name)+'</b>'+(t[4]?' · <i>'+esc(t[4])+'</i>':'')
+        + '<br>'+t[1]+' ocurrencias en '+t[2]+' tuits'
+        + (t[3]===null||t[3]===undefined ? '' : '<br>z = '+t[3]);}},
+    series:[serie]}, true);
+}
+
+function dibujar(){
+  const hacer = mascara => {
+    const render = () => {
+      RAIZ.querySelectorAll('.bloque-nubes').forEach(x => x.remove());
+      let corteActual = null, cont = null;
+      D.nubes.forEach(n => {
+        if (n.corte !== corteActual) {
+          corteActual = n.corte;
+          const b = el('<div class="bloque-nubes"></div>');
+          b.appendChild(el('<h3>'+esc(D.titulos[n.corte] || n.corte)+'</h3>'));
+          cont = el('<div class="rejilla"></div>');
+          b.appendChild(cont); RAIZ.appendChild(b);
+        }
+        pintar(panel(cont, n, MODO), n, MODO, mascara);
+      });
+      RAIZ.appendChild(el('<p class="nota bloque-nubes" style="margin-top:22px">'+esc(D.ficha.pie)+'</p>'));
+    };
+    const hayZ = D.nubes.some(n => n.hay_z);
+    const opciones = [['tuits','tuits en que aparece'],['ocurrencias','ocurrencias']]
+      .concat(hayZ ? [['z','z de log-odds']] : []);
+    const ctl = el('<div class="control"><span>Tamaño de la palabra</span>'
+      + opciones.map(o=>'<button class="chip" data-m="'+o[0]+'" aria-pressed="'
+        +(o[0]===MODO)+'">'+o[1]+'</button>').join(' ') + '</div>');
+    RAIZ.appendChild(ctl);
+    ctl.querySelectorAll('button[data-m]').forEach(b => b.onclick = () => {
+      MODO = b.dataset.m;
+      ctl.querySelectorAll('button[data-m]').forEach(x =>
+        x.setAttribute('aria-pressed', String(x.dataset.m === MODO)));
+      render();
+    });
+    render();
+  };
+  if (D.ficha.mascara) {
+    const img = new Image();
+    img.onload = () => hacer(img);
+    img.onerror = () => { RAIZ.appendChild(el('<p class="aviso">No se pudo leer la máscara; '
+      + 'las nubes van con la forma <code>'+esc(D.ficha.forma)+'</code>.</p>')); hacer(null); };
+    img.src = D.ficha.mascara;
+  } else hacer(null);
+}
+
+if (HAY_ECHARTS) dibujar();
+</script>
+</body>
+</html>

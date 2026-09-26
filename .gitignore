@@ -1,0 +1,8 @@
+# Entorno virtual y cache de Python
+.venv/
+__pycache__/
+*.pyc
+
+# Respaldos y checkpoints de notebooks
+*.bak
+.ipynb_checkpoints/

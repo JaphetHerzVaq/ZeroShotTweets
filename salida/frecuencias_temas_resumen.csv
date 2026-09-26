@@ -1,0 +1,34 @@
+﻿cluster,tema,tuits_corpus,tuits_calificados,atmosfera,perspectiva_politica,imagen_cultural,violencia,prop_calificados,indicadores_por_tuit
+-2,sin texto útil,88,0,0,0,0,0,0.0,
+-1,ruido,897,44,31,7,19,6,0.049,1.43
+0,"C0 · cristiano, iglesia, dios, judío",180,0,0,0,0,0,0.0,
+1,"C1 · especial, correcto, palabra, entrepierna",147,1,0,1,0,0,0.007,1.0
+2,"C2 · jugador, portero, fichaje, ince",135,1,0,0,0,1,0.007,1.0
+3,"C3 · yonna, streamer, chica, stream",113,2,0,0,1,1,0.018,1.0
+4,"C4 · méxico, viaje, ciudad, hora",99,41,38,2,25,1,0.414,1.61
+5,"C5 · partido, copa, fútbol, mundo",95,2,2,0,0,0,0.021,1.0
+6,"C6 · proyecto, desarrollador, vivienda, negocio",93,0,0,0,0,0,0.0,
+7,"C7 · lindo, genial, increíble, favor",75,1,1,0,1,0,0.013,2.0
+8,"C8 · vegetarian, ensalada, queso, recipes",60,12,2,0,12,0,0.2,1.17
+9,"C9 · rotundo, mitch, traemos, verdaderamente",49,1,0,0,0,1,0.02,1.0
+10,"C10 · méxico, mexicano, gente, japón",47,23,21,11,7,15,0.489,2.35
+11,"C11 · estadio, york, autobús, impresionante",46,6,2,3,4,0,0.13,1.5
+12,"C12 · marido, carne, batidos, leche",45,0,0,0,0,0,0.0,
+13,"C13 · tecnología, acción, ambicioso, fundador",39,0,0,0,0,0,0.0,
+14,"C14 · sitio, hecho, usuario, envío",37,0,0,0,0,0,0.0,
+15,"C15 · colega, cumpleaños, médico, besadme",35,1,1,0,0,0,0.029,1.0
+16,"C16 · tarea, aplicación, app, foto",35,0,0,0,0,0,0.0,
+17,"C17 · entrada, vuelo, club, inglaterra",33,0,0,0,0,0,0.0,
+18,"C18 · fujisawa, kai, hit, kamakura",30,2,1,0,1,0,0.067,1.0
+19,"C19 · extraño, correo, electrónico, terapia",27,0,0,0,0,0,0.0,
+20,"C20 · hora, presidente, kompany, wednesday",26,0,0,0,0,0,0.0,
+21,"C21 · imbécil, llama, pedófilo, zorra",24,3,3,0,0,0,0.125,1.0
+22,"C22 · voz, película, lotta, mandalorian",23,0,0,0,0,0,0.0,
+23,"C23 · equipaje, tampón, bolsa, bolsillo",23,1,0,1,0,0,0.043,1.0
+24,"C24 · mujer, gay, militar, feminista",22,0,0,0,0,0,0.0,
+25,"C25 · paso, milla, corro, seguido",21,1,0,0,1,0,0.048,1.0
+26,"C26 · gracia, mentalmente, inolvidable, artista",20,0,0,0,0,0,0.0,
+27,"C27 · publicación, hermano, post, hermoso",19,0,0,0,0,0,0.0,
+28,"C28 · entrega, sim, mes, pago",17,1,1,0,0,0,0.059,1.0
+29,"C29 · efecto, phat, indeed, yes",16,0,0,0,0,0,0.0,
+30,"C30 · lluvia, tormenta, sol, repentino",15,1,1,0,0,0,0.067,1.0
